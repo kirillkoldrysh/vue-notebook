@@ -20,8 +20,7 @@
       <textarea v-model="content"></textarea>
     </section>
 
-    <aside class="preview">
-      {{ notePreview }}
+    <aside class="preview" v-html="notePreview">
     </aside>
 
   </div>
