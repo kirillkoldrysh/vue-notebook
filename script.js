@@ -17,13 +17,21 @@ new Vue({
         }
     },
 
+    methods: {
+        saveNote() {
+            console.log('saving note: ', this.content);
+            localStorage.setItem('content', this.content);
+            this.reportOperation('saving');
+        },
+        reportOperation(opName) {
+            console.log('The ', opName, ' operation was completed!');
+        },
+    },
+
     // Change watchers
     watch: {
         // Watching 'content' data property
-        content(val, oldVal) {
-                console.log('new note: ', val, ' old note: ', oldVal);
-                localStorage.setItem('content', val);
-        },
+        content: 'saveNote',
     },
 
 });
