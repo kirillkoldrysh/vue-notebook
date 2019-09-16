@@ -17,8 +17,17 @@ new Vue({
         }
     },
 
+    // Change watchers
+    watch: {
+        // Watching 'content' data property
+        content(val, oldVal) {
+                console.log('new note: ', val, ' old note: ', oldVal);
+                localStorage.setItem('content', val);
+        },
+    },
+
 });
 
 // Marked library test
-const html = marked('**Bold** *Italic* [link](http://hello.vue.org/)');
-console.log(html);
+// const html = marked('**Bold** *Italic* [link](http://hello.vue.org/)');
+// console.log(html);
