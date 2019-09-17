@@ -21,6 +21,12 @@
         <!-- Add note button -->
         <button v-bind:title="addButtonTitle" v-on:click="addNote"><i class="material-icons">add</i>Add note</button>
       </div>
+      <div class="notes">
+        <!-- Note list here -->
+        <div class="note" v-for="note of notes">
+          {{ note.title }}
+        </div>
+      </div>
     </aside>
     <!-- Main pane -->
     <section class="main">
