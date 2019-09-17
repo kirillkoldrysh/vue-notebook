@@ -6,6 +6,7 @@ new Vue({
     data() {
         return {
             content: localStorage.getItem('content') || 'You can write in **markdown**',
+            notes: [],
         }
     },
 
@@ -14,6 +15,9 @@ new Vue({
         notePreview() {
             // Markdown rendered to HTML
             return marked(this.content);
+        },
+        addButtonTitle() {
+            return this.notes.length + ' note(s) already';
         }
     },
 
@@ -26,6 +30,20 @@ new Vue({
         reportOperation(opName) {
             console.log('The ', opName, ' operation was completed!');
         },
+        addNote() {
+            const time = Date.now();
+            // Default new note
+            const note = {
+                id: String(time),
+                title: 'New note ' + (this.notes.length + 1),
+                content: '**Hi** This notebook is using [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) for formatting!',
+                created: time,
+                favorite: false,
+            };
+
+            // Add to the list
+            this.notes.push(note);
+        }
     },
 
     // Change watchers

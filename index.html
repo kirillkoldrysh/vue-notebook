@@ -15,6 +15,13 @@
   <!-- Notebook app -->
   <div id="notebook">
 
+    <!-- Sidebar -->
+    <aside class="side-bar">
+      <div class="toolbar">
+        <!-- Add note button -->
+        <button v-bind:title="addButtonTitle" v-on:click="addNote"><i class="material-icons">add</i>Add note</button>
+      </div>
+    </aside>
     <!-- Main pane -->
     <section class="main">
       <textarea v-model="content"></textarea>
