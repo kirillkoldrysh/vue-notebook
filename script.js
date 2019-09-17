@@ -5,7 +5,7 @@ new Vue({
     // Some data
     data() {
         return {
-            content: 'This is not a note.',
+            content: localStorage.getItem('content') || 'You can write in **markdown**',
         }
     },
 
@@ -34,7 +34,16 @@ new Vue({
         content: 'saveNote',
     },
 
+    // This will be called when the instance is ready
+    // created () {
+    //     // Set the content to the stored value
+    //     // or to a default string if nothing was saved
+    //     this.content = localStorage.getItem('content') || 'You can write in **markdown**';   
+    // },
+
 });
+
+// console.log('restored note: ', localStorage.getItem('content'));
 
 // Marked library test
 // const html = marked('**Bold** *Italic* [link](http://hello.vue.org/)');
