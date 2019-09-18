@@ -23,14 +23,14 @@
       </div>
       <div class="notes">
         <!-- Note list here -->
-        <div class="note" v-for="note of notes">
+        <div class="note" v-for="note of notes" @click="selectNote(note)">
           {{ note.title }}
         </div>
       </div>
     </aside>
     <!-- Main pane -->
     <section class="main">
-      <textarea v-model="content"></textarea>
+      <textarea v-model="selectedNote.content"></textarea>
     </section>
 
     <aside class="preview" v-html="notePreview">

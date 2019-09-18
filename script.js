@@ -7,17 +7,26 @@ new Vue({
         return {
             content: localStorage.getItem('content') || 'You can write in **markdown**',
             notes: [],
+            selectedId: null,
         }
     },
 
     // Computed properties
     computed: {
         notePreview() {
-            // Markdown rendered to HTML
-            return marked(this.content);
+            if(this.selectedId !== null)
+                // Markdown rendered to HTML
+                return this.selectedNote ? marked(this.selectedNote.content) : '';
         },
         addButtonTitle() {
             return this.notes.length + ' note(s) already';
+        },
+        selectedNote() {
+            if(this.selectedId !== null)
+                // We return the matching note with selectedId
+                return this.notes.find(note => note.id === this.selectedId);
+            else
+                return {content: 'default content'};
         }
     },
 
@@ -36,14 +45,17 @@ new Vue({
             const note = {
                 id: String(time),
                 title: 'New note ' + (this.notes.length + 1),
-                content: '**Hi** This notebook is using [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) for formatting!',
+                content: this.content,
                 created: time,
                 favorite: false,
             };
 
             // Add to the list
             this.notes.push(note);
-        }
+        },
+        selectNote(note) {
+            this.selectedId = note.id;
+        },
     },
 
     // Change watchers
