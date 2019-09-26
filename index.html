@@ -29,12 +29,14 @@
       </div>
     </aside>
     <!-- Main pane -->
-    <section class="main">
-      <textarea v-model="selectedNote.content"></textarea>
-    </section>
+    <template v-if="selectedId">
+      <section class="main">
+        <textarea v-model="selectedNote.content"></textarea>
+      </section>
 
-    <aside class="preview" v-html="notePreview">
-    </aside>
+      <aside class="preview" v-html="notePreview">
+      </aside>
+  </template>
 
   </div>
 
