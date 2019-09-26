@@ -1,13 +1,14 @@
 // New Vue.js instance
 new Vue({
     el: '#notebook',
+    name: 'notebook',
 
     // Some data
     data() {
         return {
-            content: localStorage.getItem('content') || 'You can write in **markdown**',
-            notes: [],
-            selectedId: null,
+            // content: localStorage.getItem('content') || 'You can write in **markdown**',
+            notes: JSON.parse(localStorage.getItem('notes')) || [],
+            selectedId: localStorage.getItem('selected-id') || null,
         }
     },
 
@@ -26,14 +27,13 @@ new Vue({
                 // We return the matching note with selectedId
                 return this.notes.find(note => note.id === this.selectedId);
             else
-                return {content: 'default content'};
+                return {content: this.content};
         }
     },
 
     methods: {
-        saveNote() {
-            console.log('saving note: ', this.content);
-            localStorage.setItem('content', this.content);
+        saveNotes() {
+            localStorage.setItem('notes', JSON.stringify(this.notes));
             this.reportOperation('saving');
         },
         reportOperation(opName) {
@@ -45,13 +45,15 @@ new Vue({
             const note = {
                 id: String(time),
                 title: 'New note ' + (this.notes.length + 1),
-                content: this.content,
+                content: '**Hi!** This notebook is using markdown for formatting',
                 created: time,
                 favorite: false,
             };
 
             // Add to the list
             this.notes.push(note);
+            // Select
+            this.selectNote(note);
         },
         selectNote(note) {
             this.selectedId = note.id;
@@ -60,8 +62,18 @@ new Vue({
 
     // Change watchers
     watch: {
+        // When our notes change, we save them
+        notes: {
+            handler: 'saveNotes',
+            deep: true,
+        },
+
+        selectedId(val, oldVal) {
+            localStorage.getItem('selected-id', val);
+        },
+
         // Watching 'content' data property
-        content: 'saveNote',
+        // content: 'saveNote',
     },
 
     // This will be called when the instance is ready

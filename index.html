@@ -23,7 +23,7 @@
       </div>
       <div class="notes">
         <!-- Note list here -->
-        <div class="note" v-for="note of notes" @click="selectNote(note)">
+        <div class="note" v-for="note of notes" @click="selectNote(note)" :class="{selected: note === selectedNote}">
           {{ note.title }}
         </div>
       </div>
