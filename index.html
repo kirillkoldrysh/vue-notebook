@@ -23,8 +23,8 @@
       </div>
       <div class="notes">
         <!-- Note list here -->
-        <div class="note" v-for="note of notes" @click="selectNote(note)" :class="{selected: note === selectedNote}">
-          {{ note.title }}
+        <div class="note" v-for="note of sortedNotes" @click="selectNote(note)" :class="{selected: note === selectedNote}">
+          <i class="icon material-icons" v-if="note.favorite">star</i>{{ note.title }}
         </div>
       </div>
     </aside>
@@ -34,6 +34,7 @@
         <div class="toolbar">
           <!-- Toolbar is here -->
           <input v-model="selectedNote.title" placeholder="Note title">
+          <button @click="favoriteNote" title="Favorite note"><i class="material-icons">{{ selectedNote.favorite ? 'star' : 'star_border' }}</i></button>
           <button @click="removeNote" title="Remove note"><i class="material-icons">delete</i></button>
         </div>
         <textarea v-model="selectedNote.content"></textarea>
