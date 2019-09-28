@@ -31,6 +31,10 @@
     <!-- Main pane -->
     <template v-if="selectedId">
       <section class="main">
+        <div class="toolbar">
+          <!-- Toolbar is here -->
+          <input v-model="selectedNote.title" placeholder="Note title">
+        </div>
         <textarea v-model="selectedNote.content"></textarea>
       </section>
 
