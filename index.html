@@ -34,6 +34,7 @@
         <div class="toolbar">
           <!-- Toolbar is here -->
           <input v-model="selectedNote.title" placeholder="Note title">
+          <button @click="removeNote" title="Remove note"><i class="material-icons">delete</i></button>
         </div>
         <textarea v-model="selectedNote.content"></textarea>
       </section>
