@@ -1,3 +1,6 @@
+Vue.filter('date', time => new moment(time)
+    .format('DD/MM/YY, HH:mm'));
+
 // New Vue.js instance
 new Vue({
     el: '#notebook',
@@ -104,8 +107,8 @@ new Vue({
     //     // or to a default string if nothing was saved
     //     this.content = localStorage.getItem('content') || 'You can write in **markdown**';   
     // },
-
 });
+
 
 // console.log('restored note: ', localStorage.getItem('content'));
 
