@@ -68,8 +68,8 @@ new Vue({
             deep: true,
         },
 
-        selectedId(val, oldVal) {
-            localStorage.getItem('selected-id', val);
+        selectedId(val) {
+            localStorage.setItem('selected-id', val);
         },
 
         // Watching 'content' data property
